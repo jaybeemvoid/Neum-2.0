@@ -67,6 +67,7 @@ function Dependency:Set(newValue : (newValue: unknown) -> () | unknown) : ()
 	if type(newValue) == "function" then
 		local newValue = (newValue :: any)(self._value)
 		if newValue == self._value then return end
+		self._value = newValue
 	elseif type(newValue) == "table" and newValue.__type == "ValueStream" then
 		Logger("valueStreamAsValueForDependency")
 	else
